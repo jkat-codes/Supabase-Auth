@@ -96,7 +96,11 @@ export function AuthProvider({ children }) {
     // Function to send OTP code to email 
     async function sendOtp(email) {
         const {data, error} = await supabase.auth.signInWithOtp({
-            email
+            email, 
+            options: {
+                // Do not create a new user if the email does not exist in the database
+                shouldCreateUser: false
+            }
         })
 
         if (error) {
