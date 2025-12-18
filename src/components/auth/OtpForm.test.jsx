@@ -77,4 +77,74 @@ describe('Error message rendering', () => {
         const errorMessage = screen.getByTestId('error-message'); 
         expect(errorMessage).toHaveTextContent(''); 
     })
+
+    test('display no error when email is valid and a code has been entered', async () => {
+        const user = userEvent.setup(); 
+        renderWithProvider(<OtpForm setCurrentView={'otp'}/>); 
+
+        const emailInput = screen.getByTestId('email-input'); 
+        await user.click(emailInput); 
+        await user.type(emailInput, 'johndoe@gmail.com'); 
+
+        const submitButton = screen.getByTestId('submit-button'); 
+        expect(submitButton).toBeEnabled(); 
+
+        const errorMessage = screen.getByTestId('error-message'); 
+        expect(errorMessage).toHaveTextContent(''); 
+
+        await user.click(submitButton); 
+
+        expect(submitButton).toBeDisabled(); 
+        expect(submitButton).toHaveTextContent('Log In'); 
+
+        const otpContainer = screen.getByTestId("otp-container"); 
+        expect(otpContainer).not.toHaveClass('hidden'); 
+        
+        await user.type(screen.getByTestId('otp-input-0'), '0'); 
+        await user.type(screen.getByTestId('otp-input-1'), '1'); 
+        await user.type(screen.getByTestId('otp-input-2'), '2'); 
+        await user.type(screen.getByTestId('otp-input-3'), '3'); 
+        await user.type(screen.getByTestId('otp-input-4'), '4'); 
+        await user.type(screen.getByTestId('otp-input-5'), '5'); 
+        
+        expect(screen.getByTestId('otp-input-0')).toHaveValue('0'); 
+        expect(screen.getByTestId('otp-input-1')).toHaveValue('1'); 
+        expect(screen.getByTestId('otp-input-2')).toHaveValue('2'); 
+        expect(screen.getByTestId('otp-input-3')).toHaveValue('3'); 
+        expect(screen.getByTestId('otp-input-4')).toHaveValue('4'); 
+        expect(screen.getByTestId('otp-input-5')).toHaveValue('5'); 
+
+    })
+
+    test('display no error when email is valid and a partial code has been entered with deletes', async () => {
+        const user = userEvent.setup(); 
+        renderWithProvider(<OtpForm setCurrentView={'otp'}/>); 
+
+        const emailInput = screen.getByTestId('email-input'); 
+        await user.click(emailInput); 
+        await user.type(emailInput, 'johndoe@gmail.com'); 
+
+        const submitButton = screen.getByTestId('submit-button'); 
+        expect(submitButton).toBeEnabled(); 
+
+        const errorMessage = screen.getByTestId('error-message'); 
+        expect(errorMessage).toHaveTextContent(''); 
+
+        await user.click(submitButton); 
+
+        expect(submitButton).toBeDisabled(); 
+        expect(submitButton).toHaveTextContent('Log In'); 
+
+        const otpContainer = screen.getByTestId("otp-container"); 
+        expect(otpContainer).not.toHaveClass('hidden'); 
+        
+        const firstInput = screen.getByTestId('otp-input-0');
+        const secondInput = screen.getByTestId('otp-input-1');
+
+        await user.type(firstInput, '1'); 
+        expect(secondInput).toHaveFocus(); 
+
+        await user.keyboard('{Backspace}'); 
+        expect(firstInput).toHaveFocus(); 
+    })
 })
