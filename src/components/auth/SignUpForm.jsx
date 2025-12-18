@@ -43,8 +43,11 @@ export function SignUpForm({setCurrentView}) {
      * @param {*} text input text we want to validate
      * @returns '' if valid input, 'Error' if invalid input
      */
-    const validateEmailInput = (text => {
-        if (text.trim() === "") {
+    const validateEmailInput = (text)  => {
+        // Trim text 
+        text = text.trim(); 
+
+        if (text === "") {
             return 'Email cannot be empty.'; 
         }
 
@@ -53,7 +56,7 @@ export function SignUpForm({setCurrentView}) {
         }
 
         return ''; 
-    })
+    }; 
     
     /**
      * Handles passowrd input value changes

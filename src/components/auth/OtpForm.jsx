@@ -18,7 +18,10 @@ export function OtpForm({setCurrentView}) {
 
     // Validates text input, returns error if invalid
     const validateEmailInput = (text => {
-        if (text.trim() === "") {
+        // Trim text
+        text = text.trim(); 
+
+        if (text === "") {
             return 'Email cannot be empty.'; 
         }
 
