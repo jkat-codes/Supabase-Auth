@@ -76,8 +76,8 @@ export function SignInForm({setCurrentView}) {
                 <p className="error-msg">{error}</p>
             </div>
             <div className="choice-container">
-               <button onClick={handleSignInWithSSO}>Sign in with SSO</button> 
-               <button onClick={handleCreateNewAccount}>Don't have an account? Sign up here</button> 
+               <button onClick={handleSignInWithSSO}>Sign in with SSO.</button> 
+               <button onClick={handleCreateNewAccount}>Don't have an account? Sign up here.</button> 
             </div>
         </div>
     )

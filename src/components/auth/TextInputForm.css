@@ -76,6 +76,7 @@
 
 .confirm-btn:hover {
     border-color: #646cff; 
+    cursor: not-allowed; 
 }
 
 .confirm-btn:focus, button:focus-visible {

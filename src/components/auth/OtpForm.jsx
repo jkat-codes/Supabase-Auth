@@ -65,8 +65,8 @@ export function OtpForm({setCurrentView}) {
                 <p className="error-msg">{emailError}</p>
             </div>
             <div className="choice-container">
-               <button onClick={handleExistingAccount}>Already have an account? Sign in here</button> 
-               <button onClick={handleCreateNewAccount}>Don't have an account? Sign up here</button> 
+               <button onClick={handleExistingAccount}>Already have an account? Sign in here.</button> 
+               <button onClick={handleCreateNewAccount}>Don't have an account? Sign up here.</button> 
             </div>
        </div> 
     )

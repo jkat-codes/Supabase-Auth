@@ -103,7 +103,7 @@ export function SignUpForm({setCurrentView}) {
                 <p className="error-msg">{passwordError}</p>
             </div>
             <div className="choice-container">
-               <button onClick={handleExistingAccount}>Already have an account? Sign in here</button> 
+               <button onClick={handleExistingAccount}>Already have an account? Sign in here.</button> 
             </div>
         </div>
     ); 
