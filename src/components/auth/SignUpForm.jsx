@@ -99,11 +99,11 @@ export function SignUpForm({setCurrentView}) {
         <div className="form-container">
             <h1 className="login-header">Create <span>Your</span> Account.</h1>
             <p className="input-header"></p>
-            <input type="email" name="" id="" placeholder="Email" className="input-field" value={emailValue} onChange={handleEmailChange} onBlur={() => setEmailError(validateEmailInput(emailValue))}/>
-            <input type="password" name="" id="" className='input-field' placeholder='Password' value={passwordValue} onChange={handlePasswordChange} onBlur={() => setPasswordError(validatePasswordInput(passwordValue))}/>
-            <button className="confirm-btn" id="signin-btn" onClick={handleSignUp} disabled={isButtonDisabled}>Sign Up</button>
+            <input data-testid="email-input" type="email" name="" id="" placeholder="Email" className="input-field" value={emailValue} onChange={handleEmailChange} onBlur={() => setEmailError(validateEmailInput(emailValue))}/>
+            <input data-testid="password-input" type="password" name="" id="" className='input-field' placeholder='Password' value={passwordValue} onChange={handlePasswordChange} onBlur={() => setPasswordError(validatePasswordInput(passwordValue))}/>
+            <button data-testid="submit-button" className="confirm-btn" id="signin-btn" onClick={handleSignUp} disabled={isButtonDisabled}>Sign Up</button>
             <div className="error-container">
-                <p className="error-msg">{passwordError}</p>
+                <p className="error-msg" data-testid="error-message">{emailError.length === 0 ? passwordError : emailError}</p>
             </div>
             <div className="choice-container">
                <button onClick={handleExistingAccount}>Already have an account? Sign in here.</button> 
