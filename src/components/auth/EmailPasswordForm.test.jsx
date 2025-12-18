@@ -14,7 +14,6 @@ const renderWithProvider = (component) => {
 
 describe('Error message rendering', () => {
 
-    
     test('diplays email error when email is empty', async () => {
         const user = userEvent.setup(); 
         renderWithProvider(<SignUpForm setCurrentView={'signup'}/>); 
