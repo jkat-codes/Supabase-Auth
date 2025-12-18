@@ -7,7 +7,12 @@ import { DashboardPage } from './pages/DashboardPage';
 
 // Already logged in, we need profile and ability to sign out
 
-// Protects routes that require authentication
+/**
+ * Routes requiring user auth beforehand, redirects back to login otherwise
+ * 
+ * @param {*} param0 
+ * @returns component children if user is authenticated
+ */
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth(); 
 
@@ -25,7 +30,12 @@ function ProtectedRoute({ children }) {
   return children; 
 }
 
-// Redirects to dashboard if user is already signed in
+/**
+ * Routes not requiring user auth beforehand
+ * 
+ * @param {*} param0 
+ * @returns login component for user to authenticate themselves
+ */
 function PublicRoute({ children }) {
   const {user, loading} = useAuth(); 
 
@@ -33,6 +43,7 @@ function PublicRoute({ children }) {
     return <div>Loading...</div>; 
   }
 
+  // Already signed in -> reroute to dashboard
   if (user) {
     return <Navigate to="/" replace></Navigate>; 
   }
